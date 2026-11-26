@@ -89,7 +89,7 @@ class Client:
         })
 
 
-def plan_day(day, shift_count, today):
+def plan_day(day, shift_count, today, shifts=SHIFTS):
     """Return (shifts_to_create, reason). A reason starting with WARN marks a day to fill by hand."""
     date = dt.date.fromisoformat(day["date"])
     if date > today:
@@ -106,7 +106,21 @@ def plan_day(day, shift_count, today):
         return [], "absence"
     if shift_count:
         return [], f"already has {shift_count} shift(s)"
-    return list(SHIFTS), None
+    return list(shifts), None
+
+
+def parse_shifts(text):
+    """Parse "09:00-14:00,15:00-18:00" into [("09:00", "14:00"), ("15:00", "18:00")]."""
+    shifts = []
+    for part in text.split(","):
+        try:
+            start, end = (dt.time.fromisoformat(t.strip()) for t in part.split("-"))
+        except ValueError:
+            raise argparse.ArgumentTypeError(f"bad shift {part!r}, expected HH:MM-HH:MM") from None
+        if start >= end or (shifts and start < shifts[-1][1]):
+            raise argparse.ArgumentTypeError(f"bad shift {part!r}: shifts must be in order, not overlap, and end after they start")
+        shifts.append((start, end))
+    return [(f"{a:%H:%M}", f"{b:%H:%M}") for a, b in shifts]
 
 
 def months_between(start, end):
@@ -116,7 +130,7 @@ def months_between(start, end):
         y, m = (y + 1, 1) if m == 12 else (y, m + 1)
 
 
-def run(client, start, end, today, apply, out=print):
+def run(client, start, end, today, apply, shifts=SHIFTS, out=print):
     created = 0
     warnings = 0
     for year, month in months_between(start, end):
@@ -133,17 +147,17 @@ def run(client, start, end, today, apply, out=print):
             date = dt.date.fromisoformat(day["date"])
             if not start <= date <= end:
                 continue
-            shifts, reason = plan_day(day, shift_counts.get(day["date"], 0), today)
+            planned, reason = plan_day(day, shift_counts.get(day["date"], 0), today, shifts)
             if reason:
                 warnings += reason.startswith("WARN")
                 out(f"{date} {date:%a}  skip  {reason}")
                 continue
-            for clock_in, clock_out in shifts:
+            for clock_in, clock_out in planned:
                 if apply:
                     client.create_shift(period["id"], date, clock_in, clock_out)
                 created += 1
             verb = "created" if apply else "would create"
-            out(f"{date} {date:%a}  {verb}  " + ", ".join(f"{a}-{b}" for a, b in shifts))
+            out(f"{date} {date:%a}  {verb}  " + ", ".join(f"{a}-{b}" for a, b in planned))
     out(f"{'created' if apply else 'would create'} {created} shift(s); {warnings} day(s) to fill by hand" + ("" if apply else " (dry run, pass --apply to write)"))
     return created
 
@@ -151,10 +165,12 @@ def run(client, start, end, today, apply, out=print):
 def main(argv=None):
     today = dt.date.today()
     monday = today - dt.timedelta(days=today.weekday())
-    parser = argparse.ArgumentParser(description="Fill Factorial time tracking with 09:00-14:00 and 15:00-18:00 on every working day.")
+    parser = argparse.ArgumentParser(description="Fill Factorial time tracking with a fixed schedule on every working day.")
     parser.add_argument("--from", dest="start", type=dt.date.fromisoformat, default=monday, help="first day, YYYY-MM-DD (default: this Monday)")
     parser.add_argument("--to", dest="end", type=dt.date.fromisoformat, default=today, help="last day, YYYY-MM-DD (default: today)")
     parser.add_argument("--apply", action="store_true", help="create the shifts (default: dry run)")
+    parser.add_argument("--shifts", type=parse_shifts, default=SHIFTS,
+                        help="shifts for each day, e.g. 08:00-15:00 or 09:00-14:00,15:00-18:00 (default: 09:00-14:00,15:00-18:00)")
     args = parser.parse_args(argv)
     if args.start > args.end:
         parser.error("--from is after --to")
@@ -166,7 +182,7 @@ def main(argv=None):
             raise FactorialError(f"FACTORIAL_EMAIL and FACTORIAL_PASSWORD must be set.\n{AUTH_HELP}", EXIT_AUTH)
         client = Client()
         client.login(email, password)
-        run(client, args.start, args.end, today, args.apply)
+        run(client, args.start, args.end, today, args.apply, args.shifts)
     except FactorialError as e:
         print(f"error: {e}", file=sys.stderr)
         return e.exit_code

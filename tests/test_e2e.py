@@ -24,6 +24,16 @@ class CliTest(unittest.TestCase):
         self.assertIn("2026-07-28 Tue  skip  holiday: Día de las Instituciones (Cantabria)", lines)
         self.assertIn("2026-06-01 Mon  skip  already has 2 shift(s)", lines)
 
+    def test_custom_shifts_over_filled_range_plans_nothing(self):
+        res = run_cli([*FILLED_RANGE, "--shifts", "08:00-15:00"], os.environ)
+        self.assertEqual((res.returncode, res.stderr), (0, ""))
+        self.assertEqual(res.stdout.splitlines()[-1], "would create 0 shift(s); 0 day(s) to fill by hand (dry run, pass --apply to write)")
+
+    def test_bad_shifts_exit_2_before_login(self):
+        res = run_cli(["--shifts", "14:00-09:00"], {})
+        self.assertEqual((res.returncode, res.stdout), (2, ""))
+        self.assertIn("argument --shifts: bad shift '14:00-09:00'", res.stderr)
+
     def test_missing_credentials_exit_2_with_help(self):
         env = {k: v for k, v in os.environ.items() if not k.startswith("FACTORIAL_")}
         res = run_cli([], env)

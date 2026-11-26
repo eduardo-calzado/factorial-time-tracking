@@ -58,6 +58,36 @@ class PlanDayTest(unittest.TestCase):
             with self.subTest(name):
                 self.assertEqual(f.plan_day(day, shift_count, today), want)
 
+    def test_custom_shifts(self):
+        workday = {"date": "2026-07-15", "is_laborable": False, "is_laborable_by_contract": True, "leaves": []}
+        self.assertEqual(f.plan_day(workday, 0, dt.date(2026, 11, 26), [("08:00", "15:00")]), ([("08:00", "15:00")], None))
+
+
+class ParseShiftsTest(unittest.TestCase):
+    def test_valid(self):
+        cases = [
+            ("default", "09:00-14:00,15:00-18:00", FULL_DAY),
+            ("one shift", "08:00-15:00", [("08:00", "15:00")]),
+            ("spaces", " 08:00 - 15:00 ", [("08:00", "15:00")]),
+            ("back to back", "09:00-13:00,13:00-17:00", [("09:00", "13:00"), ("13:00", "17:00")]),
+        ]
+        for name, text, want in cases:
+            with self.subTest(name):
+                self.assertEqual(f.parse_shifts(text), want)
+
+    def test_invalid(self):
+        cases = [
+            ("not a range", "09:00"),
+            ("not a time", "nine-five"),
+            ("ends before it starts", "14:00-09:00"),
+            ("empty shift", "09:00-09:00"),
+            ("overlap", "09:00-14:00,13:00-18:00"),
+            ("out of order", "15:00-18:00,09:00-14:00"),
+        ]
+        for name, text in cases:
+            with self.subTest(name), self.assertRaises(f.argparse.ArgumentTypeError):
+                f.parse_shifts(text)
+
 
 class MonthsBetweenTest(unittest.TestCase):
     def test_cases(self):

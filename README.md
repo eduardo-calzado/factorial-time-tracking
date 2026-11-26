@@ -1,6 +1,6 @@
 # factorial-time-tracking
 
-Fills your [Factorial](https://factorialhr.com) time tracking with a fixed schedule, **09:00-14:00 and 15:00-18:00**,
+Fills your [Factorial](https://factorialhr.com) time tracking with a fixed schedule, by default **09:00-14:00 and 15:00-18:00**,
 on every working day. It skips:
 
 - weekends and any day your contract marks as non-working;
@@ -55,8 +55,8 @@ export FACTORIAL_EMAIL='you@company.com'
 export FACTORIAL_PASSWORD='...'
 ```
 
-Want a different schedule? Edit `SHIFTS` at the top of `skills/factorial-time-tracking/scripts/factorial_time_tracking.py` and re-run `install.sh`
-(the timer runs the installed copy).
+Want different hours for a run? Pass `--shifts` (see [Usage](#usage)). To change the default, also used by the timer, edit `SHIFTS` at the top of
+`skills/factorial-time-tracking/scripts/factorial_time_tracking.py` and re-run `install.sh` (the timer runs the installed copy).
 
 ## Two ways to run it
 
@@ -77,6 +77,8 @@ factorial-time-tracking --apply                           # create this week's s
 factorial-time-tracking --from 2026-06-01                 # dry run of a backfill
 factorial-time-tracking --from 2026-06-01 --apply         # backfill
 factorial-time-tracking --from 2026-06-01 --to 2026-06-01 --apply   # a single day
+factorial-time-tracking --shifts 08:00-15:00 --apply      # other hours, e.g. an intensive (summer) schedule
+factorial-time-tracking --shifts 09:00-13:00,14:00-17:00  # several shifts, comma separated, in order
 ```
 
 Output, one line per day:

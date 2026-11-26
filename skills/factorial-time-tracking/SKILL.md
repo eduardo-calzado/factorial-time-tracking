@@ -14,7 +14,7 @@ Everything the tool needs ships next to this file:
 
 ## What it does
 
-The CLI creates the shifts in `SHIFTS` (default 09:00-14:00 and 15:00-18:00) on every working day in a date range. It skips non-contract days (weekends),
+The CLI creates the shifts in `SHIFTS` (default 09:00-14:00 and 15:00-18:00, or `--shifts` for one run) on every working day in a date range. It skips non-contract days (weekends),
 `bank_holiday`s, approved absences, days that already have shifts, and future days. A half-day absence is skipped with
 `WARN ... fill this day by hand`: report every WARN line to the user.
 
@@ -39,6 +39,7 @@ factorial-time-tracking                                # dry run, this week (Mon
 factorial-time-tracking --from 2026-06-01             # dry run of a backfill
 factorial-time-tracking --from 2026-06-01 --apply     # write
 factorial-time-tracking --from D --to D --apply       # one day
+factorial-time-tracking --shifts 08:00-15:00          # other hours (comma separate several shifts: 09:00-13:00,14:00-17:00)
 ```
 
 - Always do the dry run first and show the user the summary (days to create, skipped holidays and absences, WARNs). Run
