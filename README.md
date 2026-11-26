@@ -23,24 +23,30 @@ How that API works is in [skills/factorial-time-tracking/references/api.md](skil
 
 ## Install
 
-**Recommended, with `npx`** (Node 22+). It installs the skill, with the CLI inside, for Claude Code, Codex and other agents;
-the second line puts the CLI on PATH and enables the Friday timer:
+Everything the tool needs lives in [`skills/factorial-time-tracking/`](skills/factorial-time-tracking/), which is also the agent skill (see [Agent plugin](#agent-plugin-claude-code-codex)),
+so installing the plugin ships the CLI too. `install.sh` is idempotent. It copies the CLI to `~/.local/bin/factorial-time-tracking` and enables a systemd user timer that runs
+every **Friday at 17:00**.
+
+### Automatic (recommended)
+
+With `npx` (Node 22+). The first line installs the skill, with the CLI inside, for Claude Code, Codex and other agents;
+the second puts the CLI on PATH and enables the Friday timer:
 
 ```bash
 npx skills add eduardo-calzado/factorial-time-tracking -g
 ~/.agents/skills/factorial-time-tracking/scripts/install.sh
 ```
 
-**Manual, with `curl`** (only git, Python and systemd). It clones the repo into `~/projects/factorial-time-tracking`, or
-updates it, and runs the same installer:
+### Manual
+
+With `curl` (only git, Python and systemd). It clones the repo into `~/projects/factorial-time-tracking`, or updates it,
+and runs the same installer:
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/eduardo-calzado/factorial-time-tracking/main/install.sh | bash
 ```
 
-Everything the tool needs lives in [`skills/factorial-time-tracking/`](skills/factorial-time-tracking/), which is also the agent skill (see [Agent plugin](#agent-plugin-claude-code-codex)),
-so installing the plugin ships the CLI too. `install.sh` is idempotent. It copies the CLI to `~/.local/bin/factorial-time-tracking` and enables a systemd user timer that runs
-every **Friday at 17:00**.
+### Configuration
 
 Put your credentials in `~/.config/secrets.env` (`chmod 600`), which the timer sources:
 
