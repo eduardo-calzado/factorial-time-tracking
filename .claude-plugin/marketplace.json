@@ -1,0 +1,11 @@
+{
+  "name": "factorial-time-tracking",
+  "owner": { "name": "eduardo-calzado" },
+  "plugins": [
+    {
+      "name": "factorial-time-tracking",
+      "source": "./",
+      "description": "Fill Factorial (factorialhr.com) time tracking from the CLI: skill to run, backfill and troubleshoot the factorial-time-tracking tool."
+    }
+  ]
+}

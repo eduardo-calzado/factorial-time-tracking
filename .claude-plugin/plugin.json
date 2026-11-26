@@ -1,0 +1,14 @@
+{
+  "name": "factorial-time-tracking",
+  "description": "Fill Factorial (factorialhr.com) time tracking from the CLI: skill to run, backfill and troubleshoot the factorial-time-tracking tool.",
+  "author": {
+    "name": "eduardo-calzado"
+  },
+  "repository": "https://github.com/eduardo-calzado/factorial-time-tracking",
+  "keywords": [
+    "factorial",
+    "time-tracking",
+    "attendance"
+  ],
+  "license": "MIT"
+}

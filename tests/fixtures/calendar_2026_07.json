@@ -1,0 +1,272 @@
+[
+ {
+  "date": "2026-07-01",
+  "day": 1,
+  "is_laborable": false,
+  "is_laborable_by_contract": true,
+  "is_leave": false,
+  "leaves": []
+ },
+ {
+  "date": "2026-07-02",
+  "day": 2,
+  "is_laborable": false,
+  "is_laborable_by_contract": true,
+  "is_leave": false,
+  "leaves": []
+ },
+ {
+  "date": "2026-07-03",
+  "day": 3,
+  "is_laborable": false,
+  "is_laborable_by_contract": true,
+  "is_leave": false,
+  "leaves": []
+ },
+ {
+  "date": "2026-07-04",
+  "day": 4,
+  "is_laborable": false,
+  "is_laborable_by_contract": false,
+  "is_leave": false,
+  "leaves": []
+ },
+ {
+  "date": "2026-07-05",
+  "day": 5,
+  "is_laborable": false,
+  "is_laborable_by_contract": false,
+  "is_leave": false,
+  "leaves": []
+ },
+ {
+  "date": "2026-07-06",
+  "day": 6,
+  "is_laborable": false,
+  "is_laborable_by_contract": true,
+  "is_leave": false,
+  "leaves": []
+ },
+ {
+  "date": "2026-07-07",
+  "day": 7,
+  "is_laborable": false,
+  "is_laborable_by_contract": true,
+  "is_leave": false,
+  "leaves": []
+ },
+ {
+  "date": "2026-07-08",
+  "day": 8,
+  "is_laborable": false,
+  "is_laborable_by_contract": true,
+  "is_leave": false,
+  "leaves": []
+ },
+ {
+  "date": "2026-07-09",
+  "day": 9,
+  "is_laborable": false,
+  "is_laborable_by_contract": true,
+  "is_leave": false,
+  "leaves": []
+ },
+ {
+  "date": "2026-07-10",
+  "day": 10,
+  "is_laborable": false,
+  "is_laborable_by_contract": true,
+  "is_leave": false,
+  "leaves": []
+ },
+ {
+  "date": "2026-07-11",
+  "day": 11,
+  "is_laborable": false,
+  "is_laborable_by_contract": false,
+  "is_leave": false,
+  "leaves": []
+ },
+ {
+  "date": "2026-07-12",
+  "day": 12,
+  "is_laborable": false,
+  "is_laborable_by_contract": false,
+  "is_leave": false,
+  "leaves": []
+ },
+ {
+  "date": "2026-07-13",
+  "day": 13,
+  "is_laborable": false,
+  "is_laborable_by_contract": true,
+  "is_leave": false,
+  "leaves": []
+ },
+ {
+  "date": "2026-07-14",
+  "day": 14,
+  "is_laborable": false,
+  "is_laborable_by_contract": true,
+  "is_leave": false,
+  "leaves": []
+ },
+ {
+  "date": "2026-07-15",
+  "day": 15,
+  "is_laborable": false,
+  "is_laborable_by_contract": true,
+  "is_leave": false,
+  "leaves": []
+ },
+ {
+  "date": "2026-07-16",
+  "day": 16,
+  "is_laborable": false,
+  "is_laborable_by_contract": true,
+  "is_leave": true,
+  "leaves": [
+   {
+    "half_day": null,
+    "color": "FF869E",
+    "name": "Absence",
+    "is_workable": false,
+    "hours_amount": null,
+    "hourly_start_time": null,
+    "day_type": "full",
+    "type": "leave"
+   }
+  ]
+ },
+ {
+  "date": "2026-07-17",
+  "day": 17,
+  "is_laborable": false,
+  "is_laborable_by_contract": true,
+  "is_leave": false,
+  "leaves": []
+ },
+ {
+  "date": "2026-07-18",
+  "day": 18,
+  "is_laborable": false,
+  "is_laborable_by_contract": false,
+  "is_leave": false,
+  "leaves": []
+ },
+ {
+  "date": "2026-07-19",
+  "day": 19,
+  "is_laborable": false,
+  "is_laborable_by_contract": false,
+  "is_leave": false,
+  "leaves": []
+ },
+ {
+  "date": "2026-07-20",
+  "day": 20,
+  "is_laborable": false,
+  "is_laborable_by_contract": true,
+  "is_leave": false,
+  "leaves": []
+ },
+ {
+  "date": "2026-07-21",
+  "day": 21,
+  "is_laborable": false,
+  "is_laborable_by_contract": true,
+  "is_leave": false,
+  "leaves": []
+ },
+ {
+  "date": "2026-07-22",
+  "day": 22,
+  "is_laborable": false,
+  "is_laborable_by_contract": true,
+  "is_leave": false,
+  "leaves": []
+ },
+ {
+  "date": "2026-07-23",
+  "day": 23,
+  "is_laborable": false,
+  "is_laborable_by_contract": true,
+  "is_leave": false,
+  "leaves": []
+ },
+ {
+  "date": "2026-07-24",
+  "day": 24,
+  "is_laborable": false,
+  "is_laborable_by_contract": true,
+  "is_leave": false,
+  "leaves": []
+ },
+ {
+  "date": "2026-07-25",
+  "day": 25,
+  "is_laborable": false,
+  "is_laborable_by_contract": false,
+  "is_leave": false,
+  "leaves": []
+ },
+ {
+  "date": "2026-07-26",
+  "day": 26,
+  "is_laborable": false,
+  "is_laborable_by_contract": false,
+  "is_leave": false,
+  "leaves": []
+ },
+ {
+  "date": "2026-07-27",
+  "day": 27,
+  "is_laborable": false,
+  "is_laborable_by_contract": true,
+  "is_leave": false,
+  "leaves": []
+ },
+ {
+  "date": "2026-07-28",
+  "day": 28,
+  "is_laborable": false,
+  "is_laborable_by_contract": true,
+  "is_leave": true,
+  "leaves": [
+   {
+    "half_day": null,
+    "color": "D83556",
+    "name": "Día de las Instituciones (Cantabria)",
+    "is_workable": false,
+    "hours_amount": null,
+    "hourly_start_time": null,
+    "day_type": "full",
+    "type": "bank_holiday"
+   }
+  ]
+ },
+ {
+  "date": "2026-07-29",
+  "day": 29,
+  "is_laborable": false,
+  "is_laborable_by_contract": true,
+  "is_leave": false,
+  "leaves": []
+ },
+ {
+  "date": "2026-07-30",
+  "day": 30,
+  "is_laborable": false,
+  "is_laborable_by_contract": true,
+  "is_leave": false,
+  "leaves": []
+ },
+ {
+  "date": "2026-07-31",
+  "day": 31,
+  "is_laborable": false,
+  "is_laborable_by_contract": true,
+  "is_leave": false,
+  "leaves": []
+ }
+]

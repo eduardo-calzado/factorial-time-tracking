@@ -1,0 +1,7 @@
+[Unit]
+Description=Fill Factorial time tracking for the last two weeks
+
+[Service]
+Type=oneshot
+# Two weeks back so a missed Friday (machine off) is caught up next time; days that already have shifts are skipped.
+ExecStart=/bin/bash -c 'set -a; . "$HOME/.config/secrets.env"; exec "$HOME/.local/bin/factorial-time-tracking" --apply --from "$(date -d "-14 days" +%%F)"'
