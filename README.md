@@ -24,7 +24,7 @@ How that API works is in [skills/factorial-time-tracking/references/api.md](skil
 ## Install
 
 ```bash
-git clone git@github.com:eduardo-calzado/factorial-time-tracking.git ~/projects/factorial-time-tracking
+git clone https://github.com/eduardo-calzado/factorial-time-tracking.git ~/projects/factorial-time-tracking
 ~/projects/factorial-time-tracking/skills/factorial-time-tracking/scripts/install.sh
 ```
 
@@ -150,8 +150,7 @@ Inside a Claude Code session the one-step form is
 `/plugin install factorial-time-tracking --marketplace eduardo-calzado/factorial-time-tracking`.
 
 The plugin has no `version`, so each commit is a new version. Pick it up with `claude plugin marketplace update factorial-time-tracking`
-plus `claude plugin update factorial-time-tracking@factorial-time-tracking`, or `codex plugin marketplace upgrade`. While the repo is
-private, installing needs git access to it (SSH key or `gh auth setup-git`).
+plus `claude plugin update factorial-time-tracking@factorial-time-tracking`, or `codex plugin marketplace upgrade`.
 
 Other agents: `npx skills add eduardo-calzado/factorial-time-tracking -g`, or link the skill folder into the agent's skills directory.
 
