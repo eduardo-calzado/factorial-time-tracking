@@ -23,9 +23,19 @@ How that API works is in [skills/factorial-time-tracking/references/api.md](skil
 
 ## Install
 
+**Recommended, with `npx`** (Node 22+). It installs the skill, with the CLI inside, for Claude Code, Codex and other agents;
+the second line puts the CLI on PATH and enables the Friday timer:
+
 ```bash
-git clone https://github.com/eduardo-calzado/factorial-time-tracking.git ~/projects/factorial-time-tracking
-~/projects/factorial-time-tracking/skills/factorial-time-tracking/scripts/install.sh
+npx skills add eduardo-calzado/factorial-time-tracking -g
+~/.agents/skills/factorial-time-tracking/scripts/install.sh
+```
+
+**Manual, with `curl`** (only git, Python and systemd). It clones the repo into `~/projects/factorial-time-tracking`, or
+updates it, and runs the same installer:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/eduardo-calzado/factorial-time-tracking/main/install.sh | bash
 ```
 
 Everything the tool needs lives in [`skills/factorial-time-tracking/`](skills/factorial-time-tracking/), which is also the agent skill (see [Agent plugin](#agent-plugin-claude-code-codex)),
@@ -152,7 +162,7 @@ Inside a Claude Code session the one-step form is
 The plugin has no `version`, so each commit is a new version. Pick it up with `claude plugin marketplace update factorial-time-tracking`
 plus `claude plugin update factorial-time-tracking@factorial-time-tracking`, or `codex plugin marketplace upgrade`.
 
-Other agents: `npx skills add eduardo-calzado/factorial-time-tracking -g`, or link the skill folder into the agent's skills directory.
+Other agents: use the `npx skills add` line from [Install](#install), or link the skill folder into the agent's skills directory.
 
 ## Troubleshooting
 
